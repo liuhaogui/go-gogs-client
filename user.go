@@ -18,8 +18,19 @@ type User struct {
 	AvatarUrl string `json:"avatar_url"`
 }
 
+type UserList struct {
+	Data []User `json:"data""`
+	Ok   bool   `json:"ok"`
+}
+
 func (c *Client) GetUserInfo(user string) (*User, error) {
 	u := new(User)
 	err := c.getParsedResponse("GET", fmt.Sprintf("/users/%s", user), nil, nil, u)
+	return u, err
+}
+
+func (c *Client) SearchUser(user string) (*UserList,error) {
+	u := new(UserList)
+	err := c.getParsedResponse("GET", fmt.Sprintf("/users/search?q=%s", user), nil, nil, u)
 	return u, err
 }
