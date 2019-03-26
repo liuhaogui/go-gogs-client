@@ -21,7 +21,10 @@ type AddCollaboratorOption struct {
 
 func (c *Client) ListCollaborator(user, repo string) ([]*Collaborator, error) {
 	collabs := make([]*Collaborator, 0, 10)
-	return collabs, c.getParsedResponse("GET", fmt.Sprintf("/repos/%s/%s/collaborators", user, repo), nil, nil, &collabs)
+	 _ ,err := collabs, c.getParsedResponse("GET", fmt.Sprintf("/repos/%s/%s/collaborators", user, repo), nil, nil, &collabs)
+
+	return  collabs ,err
+
 }
 
 func (c *Client) AddCollaborator(user, repo, collaborator string, opt AddCollaboratorOption) error {

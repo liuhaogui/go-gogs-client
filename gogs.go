@@ -62,7 +62,6 @@ func (c *Client) getResponse(method, path string, header http.Header, body io.Re
 	if err != nil {
 		return nil, err
 	}
-
 	switch resp.StatusCode {
 	case 403:
 		return nil, errors.New("403 Forbidden")
